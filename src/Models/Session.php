@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model\Session;
+namespace App\Models\Session;
 
 class sessionDB
 {
