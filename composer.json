@@ -1,0 +1,16 @@
+{
+  "name": "teddy/quizify",
+  "description": "Petit projet d'application de quiz (devoir pour ma formation)",
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "TeddyAgt",
+      "email": "teddy.aboim@gmail.com"
+    }
+  ],
+  "require": {}
+}

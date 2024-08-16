@@ -1,15 +1,12 @@
 <?php
 
-use App\Models\Session\SessionDB;
-use App\Models\User\UserDB;
+require("vendor/autoload.php");
 
-require_once("src/tools/database-connection.php");
-require_once("src/tools/FormErrorHandler.php");
-require_once("src/Models/User.php");
-require_once("src/Models/Session.php");
+use App\Models\User\UserDB;
+use App\Tools\FormErrorHandler;
 
 $title = "Inscription";
-$handler = new FormErrorHandler("login");
+$handler = new FormErrorHandler("signup");
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
   $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_SPECIAL_CHARS) ?? "";
@@ -21,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   $handler->controlField("email", $email);
   $handler->controlField("password", $password);
   $handler->controlField("confirmation", $confirmation, $password);
-  var_dump($handler->errors);
+
   if ($handler->isOK()) {
     (new UserDB($pdo))->createUser([
       "username" => $username,

@@ -1,31 +1,6 @@
 <?php
 
-// namespace App\Models\Score;
-
-class Score
-{
-  public int $id;
-  public array $quiz;
-  public array $player;
-  public float $score;
-  public string $date;
-
-  public function __construct(array $score)
-  {
-    $this->id = $score["id"];
-    $this->quiz = [
-      "id" => $score["quiz_id"],
-      "title" => $score["quiz_title"],
-      "author" => $score["quiz_author"]
-    ];
-    $this->player = [
-      "id" => $score["quiz_player"],
-      "username" => $score["username"]
-    ];
-    $this->score = $score["score"];
-    $this->date = $score["date"];
-  }
-}
+namespace App\Models\Quiz;
 
 class ScoreDB
 {
@@ -49,11 +24,11 @@ class ScoreDB
     ");
 
     $this->statementReadAllByAuthor = $pdo->prepare("
-      SELECT quiz_id, quiz_title, quiz_author, quiz_player, username, score, DATE_FORMAT(date, '%d/%m/%Y') AS date
+      SELECT quiz_id, title, author, quiz_player, username, score, DATE_FORMAT(date, '%d/%m/%Y') AS date
       FROM Scores
       JOIN Quiz ON Scores.quiz_id = Quiz.id
       JOIN Users ON scores.quiz_player = Users.id
-      WHERE quiz_author = :userId;
+      WHERE author = :userId;
     ");
   }
 

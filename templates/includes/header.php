@@ -3,7 +3,7 @@
   <a href="./index.php" title="Retour à l'accueil" class="header__logo">Quizify</a>
 
   <button class="mobile-navigation__toggler" aria-label="Ouvrir le menu de navigation" aria-controls="main-navigation" aria-expanded="false">
-    <img src="./public/icons/burger-menu.png" alt="" class="mobile-navigation__icon" aria-hidden="true">
+    <img src="public/assets/icons/burger-menu.png" alt="" class="mobile-navigation__icon" aria-hidden="true">
   </button>
 
   <nav class="main-navigation" id="main-navigation">

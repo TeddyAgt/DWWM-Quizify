@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Session;
+namespace App\Models\User;
 
 class SessionDB
 {
@@ -49,7 +49,7 @@ class SessionDB
       if (hash_equals($hash, $signature)) {
         $this->statementReadOne->bindValue(":sessionId", $sessionId);
         $this->statementReadOne->execute();
-        $userId = $this->statementReadOne->fetch();
+        $userId = $this->statementReadOne->fetch()["user_id"];
       }
     }
     return $userId ?? false;

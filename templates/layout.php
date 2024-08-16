@@ -7,9 +7,9 @@
 
   <?php require("templates/includes/header.php"); ?>
 
-  <main>
-    <?php require($content); ?>
-  </main>
+
+  <?php require($content); ?>
+
 
   <?php require("templates/includes/footer.php"); ?>
 
