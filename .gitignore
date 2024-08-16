@@ -1,3 +1,4 @@
 .VSCodeCounter*
 .env
 db.sql
+test.php

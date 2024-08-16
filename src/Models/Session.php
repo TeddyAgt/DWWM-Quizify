@@ -2,7 +2,7 @@
 
 namespace App\Models\Session;
 
-class sessionDB
+class SessionDB
 {
   private \PDOStatement $statementCreateOne;
   private \PDOStatement $statementReadOne;

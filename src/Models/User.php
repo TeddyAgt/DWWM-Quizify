@@ -30,7 +30,7 @@ class User
   }
 }
 
-class userDB
+class UserDB
 {
   private \PDOStatement $statementCreateOne;
   private \PDOStatement $statementReadOneById;
@@ -68,7 +68,6 @@ class userDB
   {
     $hashedPassword = password_hash($user["password"], PASSWORD_ARGON2I);
     $this->statementCreateOne->bindValue(":username", $user["username"]);
-    $this->statementCreateOne->bindValue(":email", $user["email"]);
     $this->statementCreateOne->bindValue(":email", $user["email"]);
     $this->statementCreateOne->bindValue(":password", $hashedPassword);
     return $this->statementCreateOne->execute();

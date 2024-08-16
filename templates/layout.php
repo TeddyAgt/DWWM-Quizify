@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><?= $title; ?> - Quizify</title>
-</head>
+<?php require("templates/includes/head.php"); ?>
 
 <body>
-  <?php require $view; ?>
+
+  <?php require("templates/includes/header.php"); ?>
+
+  <main>
+    <?php require($content); ?>
+  </main>
+
+  <?php require("templates/includes/footer.php"); ?>
+
+  <script src="public/js/app.js"></script>
+  <?= $js ?? ""; ?>
 </body>
 
 </html>

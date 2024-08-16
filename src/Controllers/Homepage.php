@@ -23,16 +23,17 @@ use App\Models\Answer\AnswerDB;
 class Homepage
 {
 
-  public function getPage()
+  public function getPage($user)
   {
     global $pdo;
     $title =  "Accueil";
-    // fetch les quiz
-    $view =  "templates/home/home.php";
-    // require("templates/layout.php");
+
+    //  Vérifier si utilisateur connecté
+
+    $test = (new QuizDB($pdo))->getAllQuiz();
+    $content =  "templates/home/home.php";
+    require("templates/layout.php");
 
     // Tests
-    $test = (new QuizDB($pdo))->getQuiz(1);
-    var_dump($test);
   }
 }

@@ -1,0 +1,50 @@
+.signup-section,
+.login-section {
+  /* min-width: 350px; */
+  max-width: 350px;
+  width: 100%;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.password-input-box {
+  position: relative;
+}
+
+#show-password {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+  height: 100%;
+  background: none;
+  border: none;
+  padding-right: 8px;
+}
+
+#show-password img {
+  display: block;
+  width: 24px;
+}
+
+input[type="password"] {
+  padding-right: 40px;
+}
+
+.btn {
+  margin-inline: auto;
+  margin-block: 16px;
+}
+
+.form-redirection-text {
+  text-align: center;
+}
+
+.form-error {
+  font-size: 12px;
+  color: var(--error);
+}
