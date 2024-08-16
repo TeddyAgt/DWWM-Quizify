@@ -14,7 +14,7 @@ class AnswerDB
   public function __construct(private \PDO $pdo)
   {
     $this->statementCreateOne = $pdo->prepare("
-      INSERT INTO Answers (quiz_id, question_id, tett, is_true)
+      INSERT INTO Answers (quiz_id, question_id, text, is_true)
       VALUES (:quizId, :questionId, :text, :isTrue);
     ");
 

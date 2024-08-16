@@ -72,7 +72,7 @@
             <?php foreach ($quizList as $q) : ?>
 
               <li class="quiz-list__item" id="<?= $q->id; ?>">
-                <a href="./edit-quiz.php?id=<?= $q->id; ?>" title="Éditer le quiz <?= $q->title; ?>">
+                <a href="index.php?action=editQuiz&id=<?= $q->id; ?>" title="Éditer le quiz <?= $q->title; ?>">
                   <h3 class="quiz-item__title"><?= $q->title; ?></h3>
                 </a>
               </li>

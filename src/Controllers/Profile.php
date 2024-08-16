@@ -4,7 +4,6 @@ require("vendor/autoload.php");
 
 use App\Models\Quiz\{QuizDB, ScoreDB};
 
-$title = "$user->username - Page de profil";
 
 if ($user->isAdmin) {
   $quizList = (new QuizDB($pdo))->getQuizByUser($user->id);
@@ -13,6 +12,7 @@ if ($user->isAdmin) {
   $participations = (new ScoreDB($pdo))->getScoresByPlayer($user->id);
 }
 
+$title = "$user->username - Page de profil";
 $css = "
   <link rel='stylesheet' href='public/css/forms.css'>
   <link rel='stylesheet' href='public/css/profile.css'>

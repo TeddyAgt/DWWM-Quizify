@@ -12,7 +12,7 @@
         <?php foreach ($quizList as $q) : ?>
 
           <li class="quiz-list__item" data-quiz-title="<?= $q->title; ?>">
-            <a href="./quiz.php?id=<?= $q->id; ?>" title="Aller au quiz <?= $q->quiz_title; ?>">
+            <a href="index.php?action=quiz&id=<?= $q->id; ?>" title="Aller au quiz <?= $q->quiz_title; ?>">
               <h2 class="quiz-item__name"><?= $q->title; ?></h2>
               <p class="quiz-item__description">
                 <?= $q->description; ?>

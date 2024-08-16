@@ -64,7 +64,6 @@ class QuizDB
 
     if (($DBQuiz = $this->statementReadOne->fetch())) {
       $quiz = new Quiz($DBQuiz);
-
       $DBQuestions = (new QuestionDB($this->pdo))->getQuestionsByQuiz($quizId);
 
       if ($DBQuestions) {

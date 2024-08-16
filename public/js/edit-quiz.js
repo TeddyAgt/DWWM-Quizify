@@ -16,7 +16,7 @@ const deleteQuizModal = document.querySelector("#delete-quiz-modal");
 
 // Constantes globales **************************************************
 const queryParams = new URLSearchParams(window.location.search);
-const limit = queryParams.get("action") === "2" ? 3 : 2;
+const limit = queryParams.get("edit") === "2" ? 3 : 2;
 
 // Messages d'erreur **************************************************
 const ERROR_REQUIRED = "Ce champs est obligatoire";
@@ -94,6 +94,8 @@ function addAnswerInput() {
 function handleSubmitAddQuestionForm(e) {
   let isValid = true;
   const errorMessages = document.querySelectorAll(".form-error");
+  console.log(errorMessages);
+
   errorMessages.forEach((m) => (m.textContent = ""));
 
   if (!e.target[0].value) {
@@ -109,6 +111,7 @@ function handleSubmitAddQuestionForm(e) {
   for (let i = 1; i < e.target.length - limit; i++) {
     if (!e.target[i].value) {
       e.preventDefault();
+
       errorMessages[i].textContent = ERROR_REQUIRED;
       isValid = false;
     }

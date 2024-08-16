@@ -16,15 +16,9 @@ if (startQuizBtn) {
 }
 
 // Fonctions **************************************************
-/**
- * Récupèrele quiz dans la base de données et parse le JSON
- *
- * @param {string} quizId
- * @return {Object}
- */
 async function fetchQuiz(quizId) {
   try {
-    const response = await fetch(`./get-quiz.php?id=${quizId}`);
+    const response = await fetch(`index.php?action=getQuiz&id=${quizId}`);
 
     if (response.ok) {
       const quiz = await response.json();
@@ -35,11 +29,6 @@ async function fetchQuiz(quizId) {
   }
 }
 
-/**
- * Appelle la récuupération du quiz dans le back-end et instancie un
- * objet Game
- *
- */
 async function startGame() {
   const quiz = await fetchQuiz(quizId);
   const game = new Game(quiz);
@@ -47,11 +36,6 @@ async function startGame() {
   handleGame(game);
 }
 
-/**
- * Gère toute la logique du quiz
- *
- * @param {Game} game
- */
 function handleGame(game) {
   quizContainer.style.backgroundImage = "none";
 
@@ -144,11 +128,6 @@ function handleSubmitAnswer(e = null, game) {
   }
 }
 
-/**
- * Termine le jeu et envoie le résultat au back-end et les affiches sur la page.
- *
- * @param {Game} game
- */
 async function gameOver(game) {
   game.endGame();
 
@@ -161,7 +140,7 @@ async function gameOver(game) {
   };
 
   try {
-    const response = await fetch("post-score.php", {
+    const response = await fetch("index.php?action=postScore", {
       method: "POST",
       headers: {
         "Content-type": "application/json",

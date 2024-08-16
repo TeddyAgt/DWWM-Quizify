@@ -49,7 +49,11 @@ if (isset($_GET["action"])) {
       break;
 
     case 'quiz':
-      // 
+      if (!$user) {
+        header("index.php?action=login");
+      }
+
+      require("src/Controllers/Quiz.php");
       break;
 
     case 'createQuiz':
@@ -64,14 +68,24 @@ if (isset($_GET["action"])) {
       if (!$user) {
         header("index.php?action=login");
       }
+
+      require("src/Controllers/EditQuiz.php");
       break;
 
     case 'getQuiz':
-      // 
+      if (!$user) {
+        http_response_code(401);
+        header("Location: /");
+      }
+      require("src/Controllers/GetQuiz.php");
       break;
 
     case 'postScore':
-      // 
+      if (!$user) {
+        http_response_code(401);
+        header("Location: /");
+      }
+      require("src/Controllers/PostScore.php");
       break;
 
     default:

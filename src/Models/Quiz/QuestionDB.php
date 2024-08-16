@@ -15,13 +15,13 @@ class QuestionDB
   {
     $this->statementCreateOne = $pdo->prepare("
       INSERT INTO Questions (quiz_id, text)
-      VALUES (:quizID, :text);
+      VALUES (:quizId, :text);
     ");
 
     $this->statementReadOne = $pdo->prepare("
       SELECT *
       FROM Questions
-      WHERE id = :questionId;
+      WHERE id = :id;
     ");
 
     $this->statementReadAllByQuiz = $pdo->prepare("
@@ -37,12 +37,12 @@ class QuestionDB
     ");
 
     $this->statementDeleteOne = $pdo->prepare("
-      DELETE FROM Qusetions
+      DELETE FROM Questions
       WHERE id = :id;
     ");
 
     $this->statementDeleteAllByQuiz = $pdo->prepare("
-      DELETE FROM Question
+      DELETE FROM Questions
       WHERE quiz_id = :quizId;
     ");
   }
@@ -59,7 +59,6 @@ class QuestionDB
   {
     $this->statementReadAllByQuiz->bindValue(":quizId", $quizId);
     $this->statementReadAllByQuiz->execute();
-    $this->statementReadAllByQuiz->fetchAll();
 
     if (($DBQuestions = $this->statementReadAllByQuiz->fetchAll())) {
       $questions = [];
@@ -69,7 +68,7 @@ class QuestionDB
 
         if ($DBanswers) {
           foreach ($DBanswers as $DBanswer) {
-            $question->addAnswer($DBanswer);
+            $question->addAnswer(new Answer($DBanswer));
           }
         }
 
@@ -94,7 +93,7 @@ class QuestionDB
 
       if ($DBanswers) {
         foreach ($DBanswers as $DBanswer) {
-          $question->addAnswer($DBanswer);
+          $question->addAnswer(new Answer($DBanswer));
         }
       }
 
