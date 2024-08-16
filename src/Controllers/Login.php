@@ -4,11 +4,6 @@ require("vendor/autoload.php");
 use App\Models\User\{UserDB, SessionDB};
 use App\Tools\FormErrorHandler;
 
-require_once("src/tools/database-connection.php");
-require_once("src/tools/FormErrorHandler.php");
-require_once("src/Models/User.php");
-require_once("src/Models/Session.php");
-
 $title = "Connexion";
 $handler = new FormErrorHandler("login");
 

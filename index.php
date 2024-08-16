@@ -1,6 +1,6 @@
 <?php
 require("vendor/autoload.php");
-// require_once("src/Tools/database-connection.php");
+require_once("src/Tools/database-connection.php");
 
 use App\Controllers\Homepage;
 use App\Models\User\{UserDB, SessionDB};
@@ -37,6 +37,8 @@ if (isset($_GET["action"])) {
       if (!$user) {
         header("index.php");
       }
+
+      require_once("src/Controllers/Logout.php");
       break;
 
     case 'profile':
@@ -55,7 +57,8 @@ if (isset($_GET["action"])) {
       if (!$user) {
         header("index.php?action=login");
       }
-      echo "création quiz réussie";
+
+      require("src/Controllers/CreateQuiz.php");
       break;
 
     case 'editQuiz':

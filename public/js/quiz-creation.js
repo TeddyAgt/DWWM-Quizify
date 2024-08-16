@@ -6,7 +6,7 @@ const closeModalBtn = document.querySelector("#close-modal");
 const createQuizForm = document.querySelector("#create-quiz-form");
 const titleError = document.querySelector("#title-error");
 const descriptionError = document.querySelector("#description-error");
-console.log(createQuizForm);
+
 // Messages d'erreur **************************************************
 const ERROR_REQUIRED = "Ce champs est obligatoire";
 const ERROR_TITLE_TOO_SHORT = "Le titre doit faire 8 caractères minimum";
@@ -20,33 +20,17 @@ createQuizModal.addEventListener("click", (e) => e.stopPropagation());
 createQuizForm.addEventListener("submit", handleSubmitForm);
 
 // Fonctions **************************************************
-/**
- * Affiche la modale de création de quiz et
- * lui ajoute un écouteur d'évenement.
- *
- */
 function showCreateQuizModal() {
   overlay.classList.add("active");
   overlay.addEventListener("click", hideCreateQuizModal);
 }
 
-/**
- * Cache la modale de création de quiz
- * et annule son écouteur d'évènement.
- *
- */
 function hideCreateQuizModal() {
   overlay.removeEventListener("click", hideCreateQuizModal);
   overlay.querySelector("form").reset();
   overlay.classList.remove("active");
 }
 
-/**
- * Gère la gestion d'erreurs du formulaire de création de quiz
- * avant la soumission finale au back-end.
- *
- * @param {SubmitEvent} e
- */
 function handleSubmitForm(e) {
   let isValid = true;
 
