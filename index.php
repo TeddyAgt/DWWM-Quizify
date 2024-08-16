@@ -2,7 +2,6 @@
 require("vendor/autoload.php");
 require_once("src/Tools/database-connection.php");
 
-use App\Controllers\Homepage;
 use App\Models\User\{UserDB, SessionDB};
 
 $user = null;
@@ -80,7 +79,7 @@ if (isset($_GET["action"])) {
       break;
   }
 } else {
-  (new Homepage())->getPage($user);
+  require("src/Controllers/Homepage.php");
 }
 // } catch (Exception $e) {
 //   $errorMessage = $e->getMessage();

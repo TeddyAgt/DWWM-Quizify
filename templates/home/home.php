@@ -1,14 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
+<main>
+  <section class="quiz-list-section white-card">
+    <h1 class="main-title">Liste des <span>Quiz</span></h1>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+    <form role="search" class="search-bar">
+      <input type="search" name="search" id="search" placeholder="Rechercher...">
+      <label for="search" aria-label="Rechercher">🔎</label>
+    </form>
 
-<body>
-  <h1>coucou le monde</h1>
-</body>
+    <ul class="quiz-list">
+      <?php if (count($quizList)) : ?>
+        <?php foreach ($quizList as $q) : ?>
 
-</html>
+          <li class="quiz-list__item" data-quiz-title="<?= $q->title; ?>">
+            <a href="./quiz.php?id=<?= $q->id; ?>" title="Aller au quiz <?= $q->quiz_title; ?>">
+              <h2 class="quiz-item__name"><?= $q->title; ?></h2>
+              <p class="quiz-item__description">
+                <?= $q->description; ?>
+              </p>
+            </a>
+          </li>
+
+        <?php endforeach; ?>
+      <?php else : ?>
+
+        <li>Oups... On dirait qu'aucun quiz n'a été créé. Lancez-vous !</li>
+
+      <?php endif; ?>
+    </ul>
+
+  </section>
+</main>

@@ -1,25 +1,12 @@
 <?php
 
-namespace App\Controllers;
-
 require("vendor/autoload.php");
 
 use App\Models\Quiz\QuizDB;
 
-class Homepage
-{
-
-  public function getPage($user)
-  {
-    global $pdo;
-    $title =  "Accueil";
-
-    //  Vérifier si utilisateur connecté
-
-    $test = (new QuizDB($pdo))->getAllQuiz();
-    $content =  "templates/home/home.php";
-    require("templates/layout.php");
-
-    // Tests
-  }
-}
+$title =  "Accueil";
+$quizList = (new QuizDB($pdo))->getAllQuiz();
+$css = "<link rel='stylesheet' href='public/css/index.css'>";
+$content = "templates/home/home.php";
+$js = "<script src='public/js/index.js'></script>";
+require("templates/layout.php");
