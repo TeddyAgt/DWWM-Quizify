@@ -24,7 +24,11 @@
         <label for="password">Mot de passe</label>
         <div class="password-input-box">
           <input type="password" name="password" id="password" value=<?= $password ?? ""; ?>>
-          <button type="button" id="show-password" aria-label="Afficher le mot de passe" title="Afficher le mot de passe">
+          <button
+            type="button"
+            id="show-password"
+            aria-label="Afficher le mot de passe"
+            title="Afficher le mot de passe">
             <img src="public/assets/icons/show.png" alt="" aria-hidden="true">
           </button>
           <?php if ($handler->hasError("password")) : ?>

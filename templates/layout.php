@@ -7,9 +7,7 @@
 
   <?php require("templates/includes/header.php"); ?>
 
-
   <?php require($content); ?>
-
 
   <?php require("templates/includes/footer.php"); ?>
 

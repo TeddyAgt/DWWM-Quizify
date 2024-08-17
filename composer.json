@@ -12,5 +12,7 @@
       "email": "teddy.aboim@gmail.com"
     }
   ],
-  "require": {}
+  "require-dev": {
+    "squizlabs/php_codesniffer": "*"
+  }
 }

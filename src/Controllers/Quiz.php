@@ -7,7 +7,7 @@ require("vendor/autoload.php");
 $quizId = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
 
 if (!$quizId) {
-  header("Location: index.php");
+    header("Location: index.php");
 }
 
 $quiz = (new QuizDB($pdo))->getQuiz($quizId);
