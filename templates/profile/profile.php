@@ -1,7 +1,5 @@
 <main>
-    <section class="profile-section white-card <?= $user->isAdmin
-                                                    ? "profile-section--admin"
-                                                    : "profile-section--user"; ?>">
+    <section class="profile-section white-card">
         <h1 class="main-title">Ma page</h1>
 
         <!-- Info utilisateur -->
@@ -9,7 +7,7 @@
             <div class="user-data__header">
                 <h2 class="section-title">Profil</h2>
                 <button class="modify-data__button" aria-label="Modifier mes informations personnelles">
-                    <img class="modify-data__icon" src="./public/icons/pencil.png" alt="" aria-hidden="true">
+                    <img class="modify-data__icon" src="public/assets/icons/pencil.png" alt="" aria-hidden="true">
                 </button>
             </div>
 
@@ -18,49 +16,6 @@
         </article>
 
 
-        <?php if ($user->isAdmin) : ?>
-            <article class="results-data">
-                <h2>Résultats de mes quiz</h2>
-                <ul class="participations-list">
-
-                    <?php if ($results) : ?>
-                        <?php foreach ($results as $result) : ?>
-                            <div class="user-data__header">
-                                <li class="participation">
-                                    <h3><?= $result->quiz["title"]; ?></h3>
-                                    <p><?= $result->player["username"]; ?></p>
-                                    <p><?= $result->score; ?>% - <?= $result->date; ?></p>
-                                </li>
-                            </div>
-                        <?php endforeach; ?>
-                    <?php endif; ?>
-
-                </ul>
-            </article>
-        <?php else : ?>
-            <!-- Participations de l'utilisateur -->
-            <article class="participation-data">
-                <h2 class="section-title">Mes participations</h2>
-
-                <ul class="participations-list">
-
-                    <?php if ($participations) : ?>
-                        <?php foreach ($participations as $participation) : ?>
-                            <div class="user-data__header">
-                                <li class="participation">
-                                    <h3><?= $participation->quiz["title"]; ?></h3>
-                                    <p><?= $participation->score; ?>% - <?= $participation->date; ?></p>
-                                </li>
-                            </div>
-
-                        <?php endforeach; ?>
-                    <?php endif; ?>
-
-                </ul>
-            </article>
-        <?php endif; ?>
-
-        <!-- Quiz de l'utilisateur -->
         <?php if ($user->isAdmin) : ?>
             <article class="user-quiz-data">
                 <h2 class="section-title">Mes quiz</h2>
@@ -85,8 +40,36 @@
                     <img src="public/assets/icons/plus.png" alt="" aria-hidden="true">
                 </button>
             </article>
+        <?php else : ?>
+            <!-- Participations de l'utilisateur -->
+            <article class="participation-data">
+                <h2 class="section-title">Mes participations</h2>
+
+                <ul class="participations-list">
+
+                    <?php if ($participations) : ?>
+                        <?php foreach ($participations as $participation) : ?>
+                            <div class="user-data__header">
+                                <li class="participation">
+                                    <h3><?= $participation->quiz["title"]; ?></h3>
+                                    <p><?= $participation->score; ?>% - <?= $participation->date; ?></p>
+                                </li>
+                            </div>
+
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+
+                </ul>
+            </article>
         <?php endif; ?>
+
     </section>
+
+    <?php if ($user->isAdmin) {
+        require("templates/profile/admin.php");
+    }
+    ?>
+
 </main>
 
 <div class="overlay">

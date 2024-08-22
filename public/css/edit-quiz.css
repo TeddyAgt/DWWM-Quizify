@@ -99,6 +99,16 @@
   gap: 16px;
 }
 
+input:not([type="radio"]).answer-input--good {
+  background: var(--transparent-green--background);
+  border-color: var(--transparent-green--border);
+}
+
+input:not([type="radio"]).answer-input--wrong {
+  background: var(--transparent-red--background);
+  border-color: var(--transparent-red--border);
+}
+
 #add-answer-btn {
   width: 64px;
   padding: 8px;

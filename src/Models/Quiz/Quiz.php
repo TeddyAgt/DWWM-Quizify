@@ -9,6 +9,7 @@ class Quiz
     public string $title;
     public string $description;
     public array $questions = [];
+    public array $results = [];
 
     public function __construct(array $quiz)
     {

@@ -1,6 +1,11 @@
 <header class="header">
 
-  <a href="./index.php" title="Retour à l'accueil" class="header__logo">Quizify</a>
+  <a
+    href="./index.php"
+    title="Retour à l'accueil"
+    class="header__logo">
+    <img src="public/assets/icons/quizify-logo_lafs.png" alt="">Quizify
+  </a>
 
   <button
     class="mobile-navigation__toggler"

@@ -78,7 +78,7 @@ function addAnswerInput() {
   inputGroup.classList.add("input-group");
   inputGroup.innerHTML = `
     <label for="bad-answer-${badAnswersCount}">Mauvaise réponse</label>
-    <input type="text" id="bad-answer-${badAnswersCount}" name="bad-answer-${badAnswersCount}">
+    <input type="text" id="bad-answer-${badAnswersCount}" name="bad-answer-${badAnswersCount}" class="answer-input--wrong">
     <p class="form-error"></p>
   `;
   badAnswersContainer.appendChild(inputGroup);

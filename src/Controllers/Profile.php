@@ -7,16 +7,23 @@ use App\Models\Quiz\ScoreDB;
 
 if ($user->isAdmin) {
     $quizList = (new QuizDB($pdo))->getQuizByUser($user->id);
-    $results = (new ScoreDB($pdo))->getScoresByAuthor($user->id);
 } else {
     $participations = (new ScoreDB($pdo))->getScoresByPlayer($user->id);
 }
 
 $title = "$user->username - Page de profil";
-$css = "
+$css = $user->isAdmin ? "
+    <link rel='stylesheet' href='public/css/forms.css'>
+    <link rel='stylesheet' href='public/css/profile.css'>
+    <link rel='stylesheet' href='public/css/admin.css'>
+" : "
     <link rel='stylesheet' href='public/css/forms.css'>
     <link rel='stylesheet' href='public/css/profile.css'>
 ";
-$content = "templates/profile/profile.php";
-$js = "<script src='public/js/quiz-creation.js'></script>";
+$content =  "templates/profile/profile.php";
+$js = $user->isAdmin ? "
+    <script src='public/js/quiz-creation.js'></script>
+    <script src='public/js/admin.js'></script>
+" : "";
+
 require("templates/layout.php");

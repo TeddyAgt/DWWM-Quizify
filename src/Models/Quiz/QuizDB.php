@@ -105,6 +105,13 @@ class QuizDB
                 array_push($quizList, (new Quiz($quiz)));
             }
 
+            foreach ($quizList as $quiz) {
+                $results = (new ScoreDB($this->pdo))->getScoresByQuiz($quiz->id);
+                if ($results) {
+                    $quiz->results = $results;
+                }
+            }
+
             return $quizList;
         }
 

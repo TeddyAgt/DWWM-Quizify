@@ -70,7 +70,11 @@
 
                     <div class="input-group">
                         <label for="question-text">Question</label>
-                        <input type="text" id="question-text" name="question-text" value="<?= $question->text; ?>">
+                        <input
+                            type="text"
+                            id="question-text"
+                            name="question-text"
+                            value="<?= $question->text; ?>">
                         <p class="form-error" id="question-text-error"></p>
                     </div>
 
@@ -116,12 +120,14 @@
                         <button
                             type="submit"
                             name="submit-btn"
-                            class="btn btn--blue">Valider</button>
+                            class="btn btn--blue">Valider
+                        </button>
                         <button
                             type="button"
                             name="delete-question-btn"
                             id="delete-question-btn"
-                            class="btn btn--pink">Supprimer</button>
+                            class="btn btn--pink">Supprimer
+                        </button>
                     </div>
 
                     <!-- Sinon, mode ajout -->
@@ -130,7 +136,10 @@
 
                     <div class="input-group">
                         <label for="question-text">Question</label>
-                        <input type="text" id="question-text" name="question-text">
+                        <input
+                            type="text"
+                            id="question-text"
+                            name="question-text">
                         <p class="form-error" id="question-text-error"></p>
                     </div>
 
@@ -168,7 +177,11 @@
                         <p>Ajouter une réponse supplémentaire</p>
                     </div>
 
-                    <button type="submit" name="Valider" class="btn btn--blue">Valider</button>
+                    <button
+                        type="submit"
+                        name="Valider"
+                        class="btn btn--blue">Valider
+                    </button>
 
                 <?php endif; ?>
 
@@ -193,12 +206,14 @@
                 type="submit"
                 name="confirm-delete-btn"
                 id="confirm-delete-quiz-btn"
-                class="btn btn--pink">Supprimer</button>
+                class="btn btn--pink">Supprimer
+            </button>
             <button
                 type="button"
                 name="cancel-delete-btn"
                 id="cancel-delete-quiz-btn"
-                class="btn btn--yellow">Annuler</button>
+                class="btn btn--yellow">Annuler
+            </button>
         </form>
 
     </section>
@@ -221,12 +236,14 @@
                 type="submit"
                 name="confirm-delete-btn"
                 id="confirm-delete-question-btn"
-                class="btn btn--pink">Supprimer</button>
+                class="btn btn--pink">Supprimer
+            </button>
             <button
                 type="button"
                 name="cancel-delete-btn"
                 id="cancel-delete-question-btn"
-                class="btn btn--yellow">Annuler</button>
+                class="btn btn--yellow">Annuler
+            </button>
         </form>
 
     </section>

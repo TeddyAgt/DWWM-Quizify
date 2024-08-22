@@ -19,7 +19,7 @@ class Question
         array_push($this->answers, $answer);
     }
 
-    private function randomizeAnswers()
+    public function randomizeAnswers()
     {
         shuffle($this->answers);
     }

@@ -5,7 +5,7 @@
   <meta name="author" content="TeddyAgt@github" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="icon" type="image/x-icon" href="../public/icons/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="public/assets/icons/favicon.ico">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="public/css/style.css">
   <?= $css ?? ""; ?>

@@ -1,14 +1,7 @@
 .profile-section {
   width: 100%;
   display: grid;
-}
-
-.profile-section--user {
   grid-template-columns: 1fr 2fr;
-}
-
-.profile-section--admin {
-  grid-template-columns: 1fr 1fr 2fr;
 }
 
 .main-title {
@@ -123,14 +116,14 @@ article:not(:last-child) {
   background: var(--snow);
 }
 
+.quiz-list__item:hover {
+  background: var(--snow-light);
+}
+
 .quiz-list__item a {
   display: block;
   padding: 8px;
   height: 100%;
-}
-
-.quiz-list__item:hover {
-  background: var(--snow-light);
 }
 
 @media screen and (max-width: 800px) {

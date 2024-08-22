@@ -2,11 +2,14 @@
 
 namespace App\Models\Quiz;
 
+use PHP_CodeSniffer\Standards\PEAR\Sniffs\Functions\FunctionCallSignatureSniff;
+
 class ScoreDB
 {
     private \PDOStatement $statementCreateOne;
     private \PDOStatement $statementReadAllByPlayer;
     private \PDOStatement $statementReadAllByAuthor;
+    private \PDOStatement $statementReadAllByQuiz;
     private \PDOStatement $statementDeleteByQuiz;
 
     public function __construct(private \PDO $pdo)
@@ -17,7 +20,15 @@ class ScoreDB
         ");
 
         $this->statementReadAllByPlayer = $pdo->prepare("
-            SELECT quiz_id, title, author, quiz_player, username, score, DATE_FORMAT(date, '%d/%m/%Y') AS date
+            SELECT
+                Scores.id,
+                quiz_id,
+                title,
+                author,
+                quiz_player,
+                username,
+                score,
+                DATE_FORMAT(date, '%d/%m/%Y') AS date
             FROM Scores
             JOIN Quiz ON Scores.quiz_id = Quiz.id
             JOIN Users ON scores.quiz_player = Users.id
@@ -25,11 +36,36 @@ class ScoreDB
         ");
 
         $this->statementReadAllByAuthor = $pdo->prepare("
-            SELECT Scores.id, quiz_id, title, author, quiz_player, username, score, DATE_FORMAT(date, '%d/%m/%Y') AS date
+            SELECT
+                Scores.id,
+                quiz_id,
+                title,
+                author,
+                quiz_player,
+                username,
+                score,
+                DATE_FORMAT(date, '%d/%m/%Y') AS date
             FROM Scores
             JOIN Quiz ON Scores.quiz_id = Quiz.id
             JOIN Users ON scores.quiz_player = Users.id
             WHERE author = :userId;
+        ");
+
+        $this->statementReadAllByQuiz = $pdo->prepare("
+            SELECT 
+                Scores.id,
+                quiz_id,
+                title,
+                author,
+                quiz_player,
+                username,
+                score,
+                DATE_FORMAT(date, '%d/%m/%Y') AS date
+            FROM Scores
+            JOIN Quiz ON Scores.quiz_id = Quiz.id
+            JOIN Users ON scores.quiz_player = Users.id
+            WHERE quiz_id = :quizId
+            ORDER BY date DESC;
         ");
 
         $this->statementDeleteByQuiz = $pdo->prepare("
@@ -84,5 +120,22 @@ class ScoreDB
     {
         $this->statementDeleteByQuiz->bindValue(":quizId", $quizId);
         return $this->statementDeleteByQuiz->execute();
+    }
+
+    public function getScoresByQuiz(int $quizId): array | false
+    {
+        $this->statementReadAllByQuiz->bindValue(":quizId", $quizId);
+        $this->statementReadAllByQuiz->execute();
+        if (($DBScores = $this->statementReadAllByQuiz->fetchAll())) {
+            $scores = [];
+
+            foreach ($DBScores as $DBScore) {
+                array_push($scores, (new Score($DBScore)));
+            }
+
+            return $scores;
+        }
+
+        return false;
     }
 }

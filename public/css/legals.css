@@ -1,0 +1,10 @@
+.legals-section {
+    width: 100%;
+}
+
+.legals-section article,
+.header-p {
+    max-width: 800px;
+    margin-inline: auto;
+    margin-bottom: 32px;
+}

@@ -65,7 +65,7 @@ try {
                 break;
 
             case 'editQuiz':
-                if (!$user) {
+                if (!$user || !$user->isAdmin) {
                     header("Location: index.php?action=login");
                 }
 
@@ -86,6 +86,12 @@ try {
                     header("Location: /");
                 }
                 require("src/Controllers/PostScore.php");
+                break;
+
+            case 'legals':
+                $css = "<link rel='stylesheet' href='public/css/legals.css'>";
+                $content = "templates/legals.php";
+                require("templates/layout.php");
                 break;
 
             default:
