@@ -16,10 +16,10 @@ class SessionDB
     ");
 
         $this->statementReadOne = $pdo->prepare("
-      SELECT user_id
-      FROM Sessions
-      WHERE id = :sessionId;
-    ");
+            SELECT user_id
+            FROM Sessions
+            WHERE id = :sessionId;
+        ");
 
         $this->statementDeleteOne = $pdo->prepare("
       DELETE FROM Sessions

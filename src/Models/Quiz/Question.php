@@ -17,7 +17,6 @@ class Question
     public function addAnswer(Answer $answer)
     {
         array_push($this->answers, $answer);
-        $this->randomizeAnswers();
     }
 
     private function randomizeAnswers()

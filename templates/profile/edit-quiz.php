@@ -80,6 +80,7 @@
                             type="text"
                             id="good-answer"
                             name="good-answer"
+                            class="answer-input--good"
                             value="<?= $question->answers[0]->text; ?>">
                         <p class="form-error" id="good-answer-error"></p>
                     </div>
@@ -92,6 +93,7 @@
                                     type="text"
                                     id="bad-answer-<?= $i ?>"
                                     name="bad-answer-<?= $i ?>"
+                                    class="answer-input--wrong"
                                     value="<?= $question->answers[$i]->text; ?>">
                                 <p class="form-error bad-answer-error"></p>
                             </div>
@@ -134,14 +136,22 @@
 
                     <div class="input-group">
                         <label for="good-answer">Bonne réponse</label>
-                        <input type="text" id="good-answer" name="good-answer">
+                        <input
+                            type="text"
+                            id="good-answer"
+                            name="good-answer"
+                            class="answer-input--good">
                         <p class="form-error" id="good-answer-error"></p>
                     </div>
 
                     <div id="bad-answers-container">
                         <div class="input-group">
                             <label for="bad-answer-1">Mauvaise réponse</label>
-                            <input type="text" id="bad-answer-1" name="bad-answer-1">
+                            <input
+                                type="text"
+                                id="bad-answer-1"
+                                name="bad-answer-1"
+                                class="answer-input--wrong">
                             <p class="form-error bad-answer-error"></p>
                         </div>
                     </div>

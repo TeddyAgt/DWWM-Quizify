@@ -8,7 +8,7 @@
         </form>
 
         <ul class="quiz-list">
-            <?php if (count($quizList)) : ?>
+            <?php if ($quizList) : ?>
                 <?php foreach ($quizList as $q) : ?>
                     <li class="quiz-list__item" data-quiz-title="<?= $q->title; ?>">
                         <a href="index.php?action=quiz&id=<?= $q->id; ?>" title="Aller au quiz <?= $q->quiz_title; ?>">

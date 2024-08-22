@@ -14,37 +14,37 @@ class QuestionDB
     public function __construct(private \PDO $pdo)
     {
         $this->statementCreateOne = $pdo->prepare("
-      INSERT INTO Questions (quiz_id, text)
-        VALUES (:quizId, :text);
-    ");
+            INSERT INTO Questions (quiz_id, text)
+            VALUES (:quizId, :text);
+        ");
 
         $this->statementReadOne = $pdo->prepare("
-      SELECT *
-      FROM Questions
-      WHERE id = :id;
-    ");
+            SELECT *
+            FROM Questions
+            WHERE id = :id;
+        ");
 
         $this->statementReadAllByQuiz = $pdo->prepare("
-      SELECT *
-      FROM Questions
-      WHERE quiz_id = :quizId;
-    ");
+            SELECT *
+            FROM Questions
+            WHERE quiz_id = :quizId;
+        ");
 
         $this->statementUpdateOne = $pdo->prepare("
-      UPDATE Questions
-      SET text = :text
-      WHERE id = :id;
-    ");
+            UPDATE Questions
+            SET text = :text
+            WHERE id = :id;
+        ");
 
         $this->statementDeleteOne = $pdo->prepare("
-      DELETE FROM Questions
-      WHERE id = :id;
-    ");
+            DELETE FROM Questions
+            WHERE id = :id;
+        ");
 
         $this->statementDeleteAllByQuiz = $pdo->prepare("
-      DELETE FROM Questions
-      WHERE quiz_id = :quizId;
-    ");
+            DELETE FROM Questions
+            WHERE quiz_id = :quizId;
+        ");
     }
 
     public function createQuestion(array $question): int

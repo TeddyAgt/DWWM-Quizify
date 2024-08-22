@@ -101,9 +101,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 $title = 'Éditer "' . $quiz->title . '"';
 $css = "
-  <link rel='stylesheet' href='public/css/index.css'>
-  <link rel='stylesheet' href='public/css/forms.css'>
-  <link rel='stylesheet' href='public/css/edit-quiz.css'>
+    <link rel='stylesheet' href='public/css/index.css'>
+    <link rel='stylesheet' href='public/css/forms.css'>
+    <link rel='stylesheet' href='public/css/edit-quiz.css'>
 ";
 $content = "templates/profile/edit-quiz.php";
 $js = "<script src='public/js/edit-quiz.js'></script>";

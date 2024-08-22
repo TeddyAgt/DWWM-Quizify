@@ -14,39 +14,39 @@ class QuizDB
     public function __construct(private \PDO $pdo)
     {
         $this->statementCreateOne = $pdo->prepare("
-      INSERT INTO Quiz (title, author, description)
-      VALUES (:title, :author, :description);
-    ");
+            INSERT INTO Quiz (title, author, description)
+            VALUES (:title, :author, :description);
+        ");
 
         $this->statementReadOne = $pdo->prepare("
-      SELECT *
-      FROM Quiz
-      WHERE id = :quizId;
-    ");
+            SELECT *
+            FROM Quiz
+            WHERE id = :quizId;
+        ");
 
         $this->statementReadAll = $pdo->prepare("
-      SELECT *
-      FROM Quiz;
-    ");
+            SELECT *
+            FROM Quiz;
+        ");
 
         $this->statementReadAllByAuthor = $pdo->prepare("
-      SELECT *
-      FROM Quiz
-      WHERE author = :quizAuthor;
-    ");
+            SELECT *
+            FROM Quiz
+            WHERE author = :quizAuthor;
+        ");
 
         $this->statementUpdateOne = $pdo->prepare("
-      UPDATE Quiz
-      SET
-        title = :title,
-        description = :description
-      WHERE id = :id;
-    ");
+            UPDATE Quiz
+            SET
+                title = :title,
+                description = :description
+            WHERE id = :id;
+        ");
 
         $this->statementDeleteOne = $pdo->prepare("
-      DELETE FROM Quiz
-      WHERE id = :id;
-    ");
+            DELETE FROM Quiz
+            WHERE id = :id;
+        ");
     }
 
     public function createQuiz(array $quiz): bool
@@ -122,6 +122,7 @@ class QuizDB
     public function deleteQuiz(int $quizId): bool
     {
         (new QuestionDB($this->pdo))->deleteQuestionsByQuiz($quizId);
+        (new ScoreDB($this->pdo))->deleteScoresByQuiz($quizId);
         $this->statementDeleteOne->bindValue(":id", $quizId);
         return $this->statementDeleteOne->execute();
     }

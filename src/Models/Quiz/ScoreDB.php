@@ -7,29 +7,35 @@ class ScoreDB
     private \PDOStatement $statementCreateOne;
     private \PDOStatement $statementReadAllByPlayer;
     private \PDOStatement $statementReadAllByAuthor;
+    private \PDOStatement $statementDeleteByQuiz;
 
     public function __construct(private \PDO $pdo)
     {
         $this->statementCreateOne = $pdo->prepare("
-      INSERT INTO Scores (quiz_id, quiz_player, score)
-      VALUES (:quizId, :quizPlayer, :score);
-    ");
+            INSERT INTO Scores (quiz_id, quiz_player, score)
+            VALUES (:quizId, :quizPlayer, :score);
+        ");
 
         $this->statementReadAllByPlayer = $pdo->prepare("
-      SELECT quiz_id, title, author, quiz_player, username, score, DATE_FORMAT(date, '%d/%m/%Y') AS date
-      FROM Scores
-      JOIN Quiz ON Scores.quiz_id = Quiz.id
-      JOIN Users ON scores.quiz_player = Users.id
-      WHERE quiz_player = :userId;
-    ");
+            SELECT quiz_id, title, author, quiz_player, username, score, DATE_FORMAT(date, '%d/%m/%Y') AS date
+            FROM Scores
+            JOIN Quiz ON Scores.quiz_id = Quiz.id
+            JOIN Users ON scores.quiz_player = Users.id
+            WHERE quiz_player = :userId;
+        ");
 
         $this->statementReadAllByAuthor = $pdo->prepare("
-      SELECT quiz_id, title, author, quiz_player, username, score, DATE_FORMAT(date, '%d/%m/%Y') AS date
-      FROM Scores
-      JOIN Quiz ON Scores.quiz_id = Quiz.id
-      JOIN Users ON scores.quiz_player = Users.id
-      WHERE author = :userId;
-    ");
+            SELECT Scores.id, quiz_id, title, author, quiz_player, username, score, DATE_FORMAT(date, '%d/%m/%Y') AS date
+            FROM Scores
+            JOIN Quiz ON Scores.quiz_id = Quiz.id
+            JOIN Users ON scores.quiz_player = Users.id
+            WHERE author = :userId;
+        ");
+
+        $this->statementDeleteByQuiz = $pdo->prepare("
+            DELETE FROM Scores
+            WHERE quiz_id = :quizId;
+        ");
     }
 
     public function createScore(array $score): bool
@@ -72,5 +78,11 @@ class ScoreDB
         }
 
         return false;
+    }
+
+    public function deleteScoresByQuiz(int $quizId): bool
+    {
+        $this->statementDeleteByQuiz->bindValue(":quizId", $quizId);
+        return $this->statementDeleteByQuiz->execute();
     }
 }

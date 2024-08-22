@@ -44,7 +44,7 @@ class FormErrorHandler
         }
     }
 
-    public function controlField(string $field, $value, $controlValue = "")
+    public function controlField(string $field, $value, $controlValue = null)
     {
         global $pdo;
         switch ($field) {

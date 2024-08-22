@@ -12,6 +12,9 @@ $quizId = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT) ?? "";
 
 if ($quizId) {
     $quiz = (new QuizDB($pdo))->getQuiz($quizId);
+    foreach ($quiz->questions as $question) {
+        $question->randomizeAnswers();
+    }
     header("Content-Type: application/json; charset=utf-8");
     echo json_encode($quiz);
 }

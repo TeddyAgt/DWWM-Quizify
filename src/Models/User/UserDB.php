@@ -13,27 +13,27 @@ class UserDB
     {
 
         $this->statementCreateOne = $pdo->prepare("
-      INSERT INTO Users (username, email, password)
-      VALUES (:username, :email, :password);
-    ");
+            INSERT INTO Users (username, email, password)
+            VALUES (:username, :email, :password);
+        ");
 
         $this->statementReadOneById = $pdo->prepare("
-      SELECT *
-      FROM Users
-      WHERE id = :userId;
-    ");
+            SELECT *
+            FROM Users
+            WHERE id = :userId;
+        ");
 
         $this->statementReadOneByUsername = $pdo->prepare("
-      SELECT *
-      FROM Users
-      WHERE username = :username;
-    ");
+            SELECT *
+            FROM Users
+            WHERE username = :username;
+        ");
 
         $this->statementReadOneByEmail = $pdo->prepare("
-      SELECT *
-      FROM Users
-      WHERE email = :email;
-    ");
+            SELECT *
+            FROM Users
+            WHERE email = :email;
+        ");
     }
 
     public function createUser(array $user): bool

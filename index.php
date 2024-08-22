@@ -11,93 +11,92 @@ if (($userId = (new SessionDB($pdo))->isLoggedIn())) {
 }
 
 // Router
-// try {
+try {
+    if (isset($_GET["action"])) {
+        $action = filter_input(INPUT_GET, "action", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-if (isset($_GET["action"])) {
-    $action = filter_input(INPUT_GET, "action", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        switch ($action) {
+            case 'signup':
+                if ($user) {
+                    header("Location: index.php?action=profile");
+                }
 
-    switch ($action) {
-        case 'signup':
-            if ($user) {
-                header("Location: index.php.action=profile");
-            }
+                require_once("src/Controllers/Signup.php");
+                break;
 
-            require_once("src/Controllers/Signup.php");
-            break;
+            case 'login':
+                if ($user) {
+                    header("Location: index.php?action=profile");
+                }
+                // $user = $user;
+                require_once("src/Controllers/Login.php");
+                break;
 
-        case 'login':
-            if ($user) {
-                header("Location: index.php.action=profile");
-            }
-            $user = $user;
-            require_once("src/Controllers/Login.php");
-            break;
+            case 'logout':
+                if (!$user) {
+                    header("Location: index.php");
+                }
 
-        case 'logout':
-            if (!$user) {
-                header("index.php");
-            }
+                require_once("src/Controllers/Logout.php");
+                break;
 
-            require_once("src/Controllers/Logout.php");
-            break;
+            case 'profile':
+                if (!$user) {
+                    header("Location: index.php?action=login");
+                }
 
-        case 'profile':
-            if (!$user) {
-                header("index.php?action=login");
-            }
+                require("src/Controllers/Profile.php");
+                break;
 
-            require("src/Controllers/Profile.php");
-            break;
+            case 'quiz':
+                if (!$user) {
+                    header("Location: index.php?action=login");
+                }
 
-        case 'quiz':
-            if (!$user) {
-                header("index.php?action=login");
-            }
+                require("src/Controllers/Quiz.php");
+                break;
 
-            require("src/Controllers/Quiz.php");
-            break;
+            case 'createQuiz':
+                if (!$user) {
+                    header("Location: index.php?action=login");
+                }
 
-        case 'createQuiz':
-            if (!$user) {
-                header("index.php?action=login");
-            }
+                require("src/Controllers/CreateQuiz.php");
+                break;
 
-            require("src/Controllers/CreateQuiz.php");
-            break;
+            case 'editQuiz':
+                if (!$user) {
+                    header("Location: index.php?action=login");
+                }
 
-        case 'editQuiz':
-            if (!$user) {
-                header("index.php?action=login");
-            }
+                require("src/Controllers/EditQuiz.php");
+                break;
 
-            require("src/Controllers/EditQuiz.php");
-            break;
+            case 'getQuiz':
+                if (!$user) {
+                    http_response_code(401);
+                    header("Location: /");
+                }
+                require("src/Controllers/GetQuiz.php");
+                break;
 
-        case 'getQuiz':
-            if (!$user) {
-                http_response_code(401);
-                header("Location: /");
-            }
-            require("src/Controllers/GetQuiz.php");
-            break;
+            case 'postScore':
+                if (!$user) {
+                    http_response_code(401);
+                    header("Location: /");
+                }
+                require("src/Controllers/PostScore.php");
+                break;
 
-        case 'postScore':
-            if (!$user) {
-                http_response_code(401);
-                header("Location: /");
-            }
-            require("src/Controllers/PostScore.php");
-            break;
-
-        default:
-            throw new Exception("La page demandée n'existe pas", 404);
-            break;
+            default:
+                throw new Exception("La page demandée n'existe pas", 404);
+                break;
+        }
+    } else {
+        require("src/Controllers/Homepage.php");
     }
-} else {
-    require("src/Controllers/Homepage.php");
-}
-// } catch (Exception $e) {
-//   $errorMessage = $e->getMessage();
+} catch (Exception $e) {
+    $errorMessage = $e->getMessage();
 
-//   require("templates/error.php");
-// }
+    require("templates/error.php");
+}

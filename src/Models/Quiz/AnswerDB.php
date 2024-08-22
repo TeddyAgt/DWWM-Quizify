@@ -14,37 +14,37 @@ class AnswerDB
     public function __construct(private \PDO $pdo)
     {
         $this->statementCreateOne = $pdo->prepare("
-      INSERT INTO Answers (quiz_id, question_id, text, is_true)
-      VALUES (:quizId, :questionId, :text, :isTrue);
-    ");
+            INSERT INTO Answers (quiz_id, question_id, text, is_true)
+            VALUES (:quizId, :questionId, :text, :isTrue);
+        ");
 
         $this->statementReadAllByQuiz = $pdo->prepare("
-      SELECT *
-      FROM Answers
-      WHERE quiz_id = :quizId;
-    ");
+            SELECT *
+            FROM Answers
+            WHERE quiz_id = :quizId;
+        ");
 
         $this->statementReadAllByQuestion = $pdo->prepare("
-      SELECT *
-      FROM Answers
-      WHERE question_id = :questionId;
-    ");
+            SELECT *
+            FROM Answers
+            WHERE question_id = :questionId;
+        ");
 
         $this->statementUpdateOne = $pdo->prepare("
-      UPDATE Answers
-      SET text = :text
-      WHERE id = :id;
-    ");
+            UPDATE Answers
+            SET text = :text
+            WHERE id = :id;
+        ");
 
         $this->statementDeleteOneByQuiz = $pdo->prepare("
-      DELETE FROM Answers
-      WHERE quiz_id = :quizId;
-    ");
+            DELETE FROM Answers
+            WHERE quiz_id = :quizId;
+        ");
 
         $this->statementDeleteOneByQuestion = $pdo->prepare("
-      DELETE FROM Answers
-      WHERE question_id = :questionId;
-    ");
+            DELETE FROM Answers
+            WHERE question_id = :questionId;
+        ");
     }
 
     public function createOneAnswer(array $answer): bool
