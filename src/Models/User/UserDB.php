@@ -8,6 +8,7 @@ class UserDB
     private \PDOStatement $statementReadOneById;
     private \PDOStatement $statementReadOneByUsername;
     private \PDOStatement $statementReadOneByEmail;
+    private \PDOStatement $statementUpdateOne;
 
     public function __construct(private \PDO $pdo)
     {
@@ -33,6 +34,12 @@ class UserDB
             SELECT *
             FROM Users
             WHERE email = :email;
+        ");
+
+        $this->statementUpdateOne = $pdo->prepare("
+            UPDATE Users
+            SET username = :username, email = :email
+            WHERE id = :id;
         ");
     }
 
@@ -73,5 +80,36 @@ class UserDB
             return new User($data);
         }
         return false;
+    }
+
+
+    public function emailExists(string $email): bool
+    {
+        $this->statementReadOneByEmail->bindValue(":email", $email);
+        $this->statementReadOneByEmail->execute();
+
+        if ($this->statementReadOneByEmail->fetch()) {
+            return true;
+        }
+        return false;
+    }
+
+    public function usernameExists(string $username): bool
+    {
+        $this->statementReadOneByUsername->bindValue(":username", $username);
+        $this->statementReadOneByUsername->execute();
+
+        if ($this->statementReadOneByUsername->fetch()) {
+            return true;
+        }
+        return false;
+    }
+
+    public function updateUser(array $user): bool
+    {
+        $this->statementUpdateOne->bindValue(":id", $user["id"]);
+        $this->statementUpdateOne->bindValue(":username", $user["username"]);
+        $this->statementUpdateOne->bindValue(":email", $user["email"]);
+        return $this->statementUpdateOne->execute();
     }
 }

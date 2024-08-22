@@ -22,8 +22,9 @@ $css = $user->isAdmin ? "
 ";
 $content =  "templates/profile/profile.php";
 $js = $user->isAdmin ? "
+    <script src='public/js/profile.js'></script>
     <script src='public/js/quiz-creation.js'></script>
     <script src='public/js/admin.js'></script>
-" : "";
+" : "<script src='public/js/profile.js'></script>";
 
 require("templates/layout.php");

@@ -1,146 +1,156 @@
 .profile-section {
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 2fr;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
 }
 
 .main-title {
-  grid-column: span 3;
+    grid-column: span 3;
 }
 
 article {
-  padding-inline: 16px;
+    padding-inline: 16px;
 }
 
 article:not(:last-child) {
-  border-right: 1px solid var(--black);
+    border-right: 1px solid var(--black);
 }
 
 .user-data__header {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
 }
 
 .user-data__header .section-title {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 .modify-data__button {
-  width: 32px;
-  border: none;
-  background: none;
-  transition: opacity 0.2s ease-out;
+    width: 32px;
+    border: none;
+    background: none;
+    transition: opacity 0.2s ease-out;
 }
 
 .modify-data__button:hover {
-  opacity: 0.8;
-  transition: opacity 0.2s ease-out;
+    opacity: 0.8;
+    transition: opacity 0.2s ease-out;
 }
 
 .modify-data__icon {
-  width: 100%;
-  display: block;
+    width: 100%;
+    display: block;
 }
 
 .participations-list {
-  list-style: none;
+    list-style: none;
 }
 
 .participation p {
-  padding-left: 16px;
+    padding-left: 16px;
 }
 
 #create-quiz-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  padding: 32px;
-  border: none;
-  border-radius: 5px;
-  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
-  background: var(--yellow-primary);
-  transition: background-color 0.2s ease-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 32px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+    background: var(--yellow-primary);
+    transition: background-color 0.2s ease-out;
 }
 
 #create-quiz-btn:hover {
-  background: var(--yellow-light);
+    background: var(--yellow-light);
 }
 
 #create-quiz-btn img {
-  width: 64px;
+    width: 64px;
 }
 
 /* Quiz creation modal */
 #create-quiz-modal {
-  max-width: 400px;
-  width: 100%;
+    display: none;
+    max-width: 400px;
+    width: 100%;
+}
+
+#modify-informations-modal {
+    display: none;
+}
+
+#create-quiz-modal.active,
+#modify-informations-modal.active {
+    display: block;
 }
 
 #create-quiz-modal .input-group {
-  margin-bottom: 32px;
+    margin-bottom: 32px;
 }
 
 #create-quiz-modal label {
-  display: block;
-  font-size: var(--fz-24);
-  margin-bottom: 16px;
-  text-align: center;
+    display: block;
+    font-size: var(--fz-24);
+    margin-bottom: 16px;
+    text-align: center;
 }
 
 #create-quiz-modal textarea {
-  min-height: 120px;
+    min-height: 120px;
 }
 
 .control-group {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
 }
 
 /* Quiz list */
 .quiz-list {
-  display: flex;
-  flex-direction: column;
-  row-gap: 16px;
-  list-style: none;
-  margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+    list-style: none;
+    margin-bottom: 16px;
 }
 
 .quiz-list__item {
-  border: 1px solid var(--grey);
-  border-radius: 5px;
-  background: var(--snow);
+    border: 1px solid var(--grey);
+    border-radius: 5px;
+    background: var(--snow);
 }
 
 .quiz-list__item:hover {
-  background: var(--snow-light);
+    background: var(--snow-light);
 }
 
 .quiz-list__item a {
-  display: block;
-  padding: 8px;
-  height: 100%;
+    display: block;
+    padding: 8px;
+    height: 100%;
 }
 
 @media screen and (max-width: 800px) {
-  .profile-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-  }
+    .profile-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+    }
 
-  article {
-    width: 100%;
-    padding-bottom: 16px;
-  }
+    article {
+        width: 100%;
+        padding-bottom: 16px;
+    }
 
-  article:not(:last-child) {
-    border-right: none;
-    border-bottom: 1px solid var(--black);
-  }
+    article:not(:last-child) {
+        border-right: none;
+        border-bottom: 1px solid var(--black);
+    }
 }
